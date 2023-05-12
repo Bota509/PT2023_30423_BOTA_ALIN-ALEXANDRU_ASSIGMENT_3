@@ -110,4 +110,53 @@ public class ProductView extends JFrame {
         this.setVisible(true);
     }
 
+
+
+    public int getIdTextField() {
+        return Integer.parseInt(idTextField.getText());
+    }
+
+    public void setIdTextField(String idTextField) {
+        this.idTextField.setText(idTextField);
+    }
+
+    public String getNameTextField() {
+        return nameTextField.getText();
+    }
+
+    public void setNameTextField(String nameTextField) {
+        this.nameTextField.setText(nameTextField);
+    }
+
+    public int getPriceTextField() {
+        return Integer.parseInt(priceTextField.getText());
+    }
+
+    public void setPriceTextField(String  priceTextField) {
+        this.priceTextField.setText(priceTextField);
+    }
+
+    public String getCategoryTextField() {
+        return categoryTextField.getText();
+    }
+
+    public void setCategoryTextField(String categoryTextField) {
+        this.categoryTextField.setText(categoryTextField);
+    }
+
+    public String getDescriptionTextField() {
+        return descriptionTextField.getText();
+    }
+
+    public void setDescriptionTextField(String descriptionTextField) {
+        this.descriptionTextField.setText(descriptionTextField);
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public void setTable(JTable table) {
+        this.table = table;
+    }
 }

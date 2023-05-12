@@ -108,46 +108,51 @@ public class ClientView extends JFrame{
         this.setVisible(true);
     }
 
-    public JTextField getIdTextField() {
-        return idTextField;
+    public int getIdTextField() {
+        return Integer.parseInt(idTextField.getText());
     }
 
-    public void setIdTextField(JTextField idTextField) {
-        this.idTextField = idTextField;
+    public void setIdTextField(String idTextField) {
+        this.idTextField.setText(idTextField);
     }
 
-    public JTextField getNameTextField() {
-        return nameTextField;
+    public String getNameTextField() {
+        return nameTextField.getText();
     }
 
-    public void setNameTextField(JTextField nameTextField) {
-        this.nameTextField = nameTextField;
+    public void setNameTextField(String nameTextField) {
+        this.nameTextField.setText(nameTextField);
     }
 
-    public JTextField getAdressTextField() {
-        return adressTextField;
+    public String getAdressTextField() {
+        return adressTextField.getText();
     }
 
-    public void setAdressTextField(JTextField adressTextField) {
-        this.adressTextField = adressTextField;
+    public void setAdressTextField(String adressTextField) {
+        this.adressTextField.setText(adressTextField);
     }
 
-    public JTextField getEmailTextField() {
-        return emailTextField;
+    public String getEmailTextField() {
+        return emailTextField.getText();
     }
 
-    public void setEmailTextField(JTextField emailTextField) {
-        this.emailTextField = emailTextField;
+    public void setEmailTextField(String emailTextField) {
+        this.emailTextField.setText(emailTextField);
     }
 
-    public JTextField getAgeTextField() {
-        return ageTextField;
+    public int getAgeTextField() {
+        return Integer.parseInt(ageTextField.getText());
     }
 
-    public void setAgeTextField(JTextField ageTextField) {
-        this.ageTextField = ageTextField;
+    public void setAgeTextField(String ageTextField) {
+        this.ageTextField.setText(ageTextField);
     }
 
+    public JTable getTable() {
+        return table;
+    }
 
-
+    public void setTable(JTable table) {
+        this.table = table;
+    }
 }
