@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ProductView extends JFrame {
 
@@ -14,10 +15,16 @@ public class ProductView extends JFrame {
     private JTextField categoryTextField;
     private JTextField descriptionTextField;
     private JTable table;
+    private JButton addNewProductButton;
+    private JButton editProductButton;
+    private JButton deleteProductButton;
+    private JButton showProductsButton;
+    private JScrollPane productsTable;
+
     
     public  ProductView()
     {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setBounds(100, 100, 1368, 761);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(128, 128, 0));
@@ -31,30 +38,30 @@ public class ProductView extends JFrame {
         labelClient.setBounds(533, 33, 133, 38);
         contentPane.add(labelClient);
 
-        JButton addNewClientButton = new JButton("Add New Product");
-        addNewClientButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-        addNewClientButton.setBounds(158, 85, 314, 50);
-        contentPane.add(addNewClientButton);
+        addNewProductButton = new JButton("Add New Product");
+        addNewProductButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
+        addNewProductButton.setBounds(158, 85, 314, 50);
+        contentPane.add(addNewProductButton);
 
-        JButton editClientButton = new JButton("Edit Product");
-        editClientButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-        editClientButton.setBounds(158, 171, 314, 50);
-        contentPane.add(editClientButton);
+        editProductButton = new JButton("Edit Product");
+        editProductButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
+        editProductButton.setBounds(158, 171, 314, 50);
+        contentPane.add(editProductButton);
 
-        JButton deleteClient = new JButton("Delete Product");
-        deleteClient.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-        deleteClient.setBounds(158, 247, 314, 50);
-        contentPane.add(deleteClient);
+        deleteProductButton = new JButton("Delete Product");
+        deleteProductButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
+        deleteProductButton.setBounds(158, 247, 314, 50);
+        contentPane.add(deleteProductButton);
 
         idTextField = new JTextField();
         idTextField.setBounds(288, 405, 184, 43);
         contentPane.add(idTextField);
         idTextField.setColumns(10);
 
-        JButton showClientsButton = new JButton("Show Products");
-        showClientsButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-        showClientsButton.setBounds(158, 333, 314, 50);
-        contentPane.add(showClientsButton);
+        showProductsButton = new JButton("Show Products");
+        showProductsButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
+        showProductsButton.setBounds(158, 333, 314, 50);
+        contentPane.add(showProductsButton);
 
         nameTextField = new JTextField();
         nameTextField.setColumns(10);
@@ -101,13 +108,14 @@ public class ProductView extends JFrame {
         descriptionLabel.setBounds(158, 671, 120, 43);
         contentPane.add(descriptionLabel);
 
-        JScrollPane clientsTable = new JScrollPane();
-        clientsTable.setBounds(665, 81, 643, 633);
-        contentPane.add(clientsTable);
+        productsTable = new JScrollPane();
+        productsTable.setBounds(665, 81, 643, 633);
+        contentPane.add(productsTable);
 
         table = new JTable();
-        clientsTable.setViewportView(table);
-        this.setVisible(true);
+        productsTable.setViewportView(table);
+
+        this.setVisible(false);
     }
 
 
@@ -158,5 +166,25 @@ public class ProductView extends JFrame {
 
     public void setTable(JTable table) {
         this.table = table;
+    }
+    public void display()
+    {
+        this.setVisible(true);
+    }
+    public void addProductActionListener(ActionListener actionListener)
+    {
+        this.addNewProductButton.addActionListener(actionListener);
+    }
+    public void editProductActionListener(ActionListener actionListener)
+    {
+        this.editProductButton.addActionListener(actionListener);
+    }
+    public void deleteProductActionListener(ActionListener actionListener)
+    {
+        this.deleteProductButton.addActionListener(actionListener);
+    }
+    public void showProductsActionListener(ActionListener actionListener)
+    {
+        this.showProductsButton.addActionListener(actionListener);
     }
 }

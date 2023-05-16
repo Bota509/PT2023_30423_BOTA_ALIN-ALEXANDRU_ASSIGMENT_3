@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ClientView extends JFrame{
 
@@ -13,9 +14,13 @@ public class ClientView extends JFrame{
     private JTextField emailTextField;
     private JTextField ageTextField;
     private JTable table;
+    private JButton showClientsButton;
+    private JButton deleteClientButton;
+    private JButton editClientButton;
+    private JButton addNewClientButton;
 
     public ClientView() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setBounds(100, 100, 1368, 761);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(128, 128, 0));
@@ -29,27 +34,27 @@ public class ClientView extends JFrame{
         labelClient.setBounds(533, 33, 133, 38);
         contentPane.add(labelClient);
 
-        JButton addNewClientButton = new JButton("Add New Client");
+        addNewClientButton = new JButton("Add New Client");
         addNewClientButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
         addNewClientButton.setBounds(158, 85, 314, 50);
         contentPane.add(addNewClientButton);
 
-        JButton editClientButton = new JButton("Edit Client");
+        editClientButton = new JButton("Edit Client");
         editClientButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
         editClientButton.setBounds(158, 171, 314, 50);
         contentPane.add(editClientButton);
 
-        JButton deleteClient = new JButton("Delete Client");
-        deleteClient.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
-        deleteClient.setBounds(158, 247, 314, 50);
-        contentPane.add(deleteClient);
+        deleteClientButton = new JButton("Delete Client");
+        deleteClientButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
+        deleteClientButton.setBounds(158, 247, 314, 50);
+        contentPane.add(deleteClientButton);
 
         idTextField = new JTextField();
         idTextField.setBounds(288, 405, 184, 43);
         contentPane.add(idTextField);
         idTextField.setColumns(10);
 
-        JButton showClientsButton = new JButton("Show Clients");
+        showClientsButton = new JButton("Show Clients");
         showClientsButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 26));
         showClientsButton.setBounds(158, 333, 314, 50);
         contentPane.add(showClientsButton);
@@ -105,9 +110,14 @@ public class ClientView extends JFrame{
 
         table = new JTable();
         clientsTable.setViewportView(table);
-        this.setVisible(true);
+        this.setVisible(false);
+
     }
 
+    public void display()
+    {
+        this.setVisible(true);
+    }
     public int getIdTextField() {
         return Integer.parseInt(idTextField.getText());
     }
@@ -155,4 +165,23 @@ public class ClientView extends JFrame{
     public void setTable(JTable table) {
         this.table = table;
     }
+
+    public void addNewClientActionListener(ActionListener actionListener)
+    {
+        this.addNewClientButton.addActionListener(actionListener);
+    }
+    public void editClientActionListener(ActionListener actionListener)
+    {
+        this.editClientButton.addActionListener(actionListener);
+    }
+
+    public void deleteClientActionListener(ActionListener actionListener)
+    {
+        this.deleteClientButton.addActionListener(actionListener);
+    }
+    public void showClientActionListener(ActionListener actionListener)
+    {
+        this.showClientsButton.addActionListener(actionListener);
+    }
+
 }
