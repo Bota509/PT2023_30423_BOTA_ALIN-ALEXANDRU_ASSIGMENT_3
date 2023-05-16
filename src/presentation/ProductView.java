@@ -1,4 +1,4 @@
-package View;
+package presentation;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -186,5 +186,13 @@ public class ProductView extends JFrame {
     public void showProductsActionListener(ActionListener actionListener)
     {
         this.showProductsButton.addActionListener(actionListener);
+    }
+    public void refresh()
+    {
+        this.nameTextField.setText("");
+        this.priceTextField.setText("");
+        this.descriptionTextField.setText("");
+        this.categoryTextField.setText("");
+        this.idTextField.setText("");
     }
 }

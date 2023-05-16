@@ -54,4 +54,8 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", description=" + description
+                + "]";
+    }
 }

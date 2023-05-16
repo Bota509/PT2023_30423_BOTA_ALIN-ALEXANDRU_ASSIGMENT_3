@@ -1,13 +1,17 @@
 package main;
 
-import View.ClientView;
-import View.GameStoreView;
-import View.ProductOrderView;
-import View.ProductView;
+import connection.ConnectionFactory;
+import presentation.ClientView;
+import presentation.GameStoreView;
+import presentation.ProductOrderView;
+import presentation.ProductView;
 import controller.Controller;
+
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+
 
         ClientView clientView = new ClientView();
         ProductView productView = new ProductView();

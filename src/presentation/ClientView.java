@@ -1,4 +1,4 @@
-package View;
+package presentation;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -182,6 +182,14 @@ public class ClientView extends JFrame{
     public void showClientActionListener(ActionListener actionListener)
     {
         this.showClientsButton.addActionListener(actionListener);
+    }
+    public void refresh()
+    {
+        this.idTextField.setText("");
+        this.adressTextField.setText("");
+        this.emailTextField.setText("");
+        this.ageTextField.setText("");
+        this.nameTextField.setText("");
     }
 
 }
