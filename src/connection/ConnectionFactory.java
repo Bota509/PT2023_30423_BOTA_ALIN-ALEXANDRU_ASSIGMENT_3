@@ -8,12 +8,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * <p>ConnectionFactory is a class used to establish the connection between the database and the program</p>
+ */
 public class ConnectionFactory {
-
     private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:3306/shop";
+    private static final String DBURL = "jdbc:mysql://localhost:3306/shoper";    //Mysql@localhost:3306
     private static final String USER = "root";
     private static final String PASS = "Dante@509";
 
