@@ -1,0 +1,6 @@
+18/05/2023 09:11
+Client's name: alin
+Product bought: xbox
+Quantity bought: 1
+Price per piece: 19
+Total price: 19
