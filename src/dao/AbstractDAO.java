@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 
 import connection.ConnectionFactory;
 
+import javax.swing.*;
+
 
 public class AbstractDAO<T> {
     protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
@@ -233,6 +235,7 @@ public class AbstractDAO<T> {
         }catch (Exception e)
         {
             LOGGER.log(Level.WARNING,"ClientDAO:inserClient" + e.getMessage());
+            JOptionPane.showMessageDialog(null, type.getSimpleName() + "  Cannot be deleted if depends on other objects", "Error", JOptionPane.ERROR_MESSAGE);
         }finally {
             ConnectionFactory.close(rs);
             ConnectionFactory.close(statement);

@@ -4,6 +4,7 @@ import dao.ClientDAO;
 import dao.OrdersDAO;
 import dao.ProductDAO;
 import model.Client;
+import model.Product;
 import presentation.ClientView;
 import presentation.GameStoreView;
 import presentation.ProductOrderView;
@@ -22,11 +23,11 @@ public class Controller {
     GameStoreView gameStoreView;
 
     //clients
-    private int idClient;
-    private String nameClient;
-    private String adressClient;
-    private String emailClient;
-    private int ageClient;
+    private int idClient = 0;
+    private String nameClient ="";
+    private String adressClient ="";
+    private String emailClient ="";
+    private int ageClient = 0;
 
     //products
     private int idProduct;
@@ -58,60 +59,93 @@ public class Controller {
         this.gameStoreView.openProductOrderViewActionListener(
                 (event) -> {this.productOrderView.display();}
         );
-
         //Client View Controll when one of button pressed
-        this.clientView.addNewClientActionListener(
-                (event) -> {
-                    readForClients();
-                    //add client action
-                }
-        );
-        this.clientView.deleteClientActionListener(
-                (event) -> {
-                    readForClients();
-                    //delete client action
-                }
-        );
+        insertClient();
+        removeClient();
         showClients();
-        this.clientView.editClientActionListener(
-                (event) -> {
-                    readForClients();
-                    //edit clients action
-                }
-        );
-
+        updateClient();
 
         //Product View Controll when one of button pressed
-        this.productView.addProductActionListener(
-                (event) -> {
-                    readForProducts();
-                    //add products action
-                }
-        );
-        this.productView.deleteProductActionListener(
-                (event) -> {
-                    readForProducts();
-                    //delete products action
-                }
-        );
-        this.productView.showProductsActionListener(
-                (event) -> {
-                    readForProducts();
-                    //show products action
-                }
-        );
+        insertProduct();
+        removeProduct();
+        showProducts();
+        updateProduct();
+
+        //Orders View Controll
+    }
+
+    private void updateProduct() {
         this.productView.editProductActionListener(
                 (event) -> {
                     readForProducts();
                     //edit products action
+                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct,descriptionProduct);
+                    productDAO.update(product,idProduct);
                 }
         );
+    }
 
-        //Orders View Controll
+    private void showProducts() {
+        this.productView.showProductsActionListener(
+                (event) -> {
+                    //show products action
+                    List<Product> products = productDAO.findAll();
+                    populate(productView.getTable(),products);
+                }
+        );
+    }
 
+    private void removeProduct() {
+        this.productView.deleteProductActionListener(
+                (event) -> {
+                    idProduct = productView.getIdTextField();
+                    //delete products action
+                    productDAO.delete(idProduct);
+                }
+        );
+    }
 
+    private void insertProduct() {
+        this.productView.addProductActionListener(
+                (event) -> {
+                    readForProducts();
+                    //add products action
+                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct,descriptionProduct);
+                    productDAO.insert(product);
+                }
+        );
+    }
 
+    private void updateClient() {
+        this.clientView.editClientActionListener(
+                (event) -> {
+                    readForClients();
+                    //edit clients action
+                    Client client = new Client(idClient,nameClient,adressClient,emailClient,ageClient);
+                    clientDAO.update(client,idClient);
+                }
+        );
+    }
 
+    private void removeClient() {
+        this.clientView.deleteClientActionListener(
+                (event) -> {
+                    idClient = clientView.getIdTextField();
+                    //delete client action
+                    clientDAO.delete(idClient);
+                }
+        );
+    }
+
+    private void insertClient() {
+        this.clientView.addNewClientActionListener(
+                (event) -> {
+                    readForClients();
+                    //add client action
+                    Client client = new Client(idClient,nameClient,adressClient,emailClient,ageClient);
+                    clientDAO.insert(client);
+                }
+        );
     }
 
     private void showClients() {

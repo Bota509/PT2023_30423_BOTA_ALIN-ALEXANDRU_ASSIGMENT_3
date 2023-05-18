@@ -22,7 +22,6 @@ public class Main {
         Controller controller = new Controller(clientView,productView,productOrderView,gameStoreView);
 
 
-    //ClientDAO.update(4,"Alin","Plevnei","ali@gmail.com",21);
 
 
 
