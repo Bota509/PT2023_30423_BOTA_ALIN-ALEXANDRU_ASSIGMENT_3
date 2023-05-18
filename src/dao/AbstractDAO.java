@@ -17,10 +17,21 @@ import connection.ConnectionFactory;
 import javax.swing.*;
 
 
+/**
+ * AbstractDAO represents a generic form of all Data Acces Objects and implements all the operations that are necessary to modify the
+ * data from the tables : clients, products, orders. The methos are : find all, insert, delete, update, show, findByName
+ * @author Bota Alin
+ */
 public class AbstractDAO<T> {
+
+    /**
+     *The Logger class is a part of the Java Logging API, which provides a flexible framework for logging messages in Java applications. .
+     */
     protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
 
-
+    /**
+     *Is a generic class variable
+     */
     private final Class<T> type;
 
     @SuppressWarnings("unchecked")
@@ -39,6 +50,11 @@ public class AbstractDAO<T> {
         return sb.toString();
     }
 
+    /**
+     * @return The method returns a list of all data available for a generic method
+     * Firstly the connection is made, in a try catch statement, because the connection is possible to fail, with the SELECT * FROM...
+     * SQL command all the elements from a line in a database are selected, then the list of objects is returned
+     */
     public List<T> findAll() {
         // TODO:
         Connection connection =null;
@@ -63,6 +79,11 @@ public class AbstractDAO<T> {
         return null;
     }
 
+    /**
+     * @param name is the key that the method is looking for
+     * @return returns a generic object
+     * The method is looking for an object with a specific name. When the name is found in the table the object with that name is returned
+     */
     public T findByName(String name) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -84,6 +105,10 @@ public class AbstractDAO<T> {
         }
         return null;
     }
+    /**
+     * @param resultSet
+     * @return returns a list of a generic object
+     */
     private List<T> createObjects(ResultSet resultSet) {
         List<T> list = new ArrayList<T>();
         Constructor[] ctors = type.getDeclaredConstructors();
@@ -124,6 +149,12 @@ public class AbstractDAO<T> {
         return list;
     }
 
+    /**
+     * @param t is the generic object needed to be passed and work with
+     * @return returns a generic object
+     *The method takes all information possible for a specific object from the GUI, and the inserts the data from the
+     * object in the data table
+     */
     public T insert(T t) {
 
         Connection dbConnection =null;
@@ -175,6 +206,13 @@ public class AbstractDAO<T> {
         return t;
     }
 
+    /**
+     * @param t is the generic object needed to be passed and work with
+     * @param id is the key that is looking for, to modify a specific line in the table
+     * @return returns a generic object
+     *The method is looking for a specific line in the database table by passing the id, and modifies the data with the data from the
+     * object that was passed in
+     */
     public T update(T t, int id) {
         // TODO:
         Connection dbConnection =null;
@@ -215,7 +253,10 @@ public class AbstractDAO<T> {
         return t;
     }
 
-
+    /**
+     * @param id is the key that is looking for, to modify a specific line in the table
+     *The method is looking for the line with the id passed and then deletes the data from that line in the database
+     */
     public void delete(int id) {
         // TODO:
         Connection dbConnection =null;

@@ -18,7 +18,10 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 
-
+/**
+ * <p>The controller manages teh GUI windows, receives the inputs from the GUI and connects the GUI with the operations that
+ * aer in a strong relation with the database.</p>
+ */
 public class Controller {
     ClientView clientView;
     ProductView productView;
@@ -43,7 +46,9 @@ public class Controller {
     ProductDAO productDAO;
     OrdersDAO ordersDAO;
     Bill bill;
-
+    /**
+     * <p>It's responsible with the button response from the GUI and initialization of variables</p>
+     */
     public Controller(ClientView clientView, ProductView productView, ProductOrderView productOrderView, GameStoreView gameStoreView) {
         this.clientView = clientView;
         this.productOrderView = productOrderView;
@@ -96,14 +101,19 @@ public class Controller {
                 }
         );
     }
-
+    /**
+     * Populates the client and the product JTables in the Orders View.
+     */
     public void populateTables() {
         List<Client> clients = clientDAO.findAll();
         List<Product> products = productDAO.findAll();
         populate(productOrderView.getClientTable(), clients);
         populate(productOrderView.getProductTable(), products);
     }
-
+    /**
+     * When a purchase is done, this method is called, it verifies if the quantity input is available in the stock, if it's available
+     * the purchase is made, it decrements the stock of the product , it refreshes the tables, and creates the bill
+     */
     public void purchase() throws IOException {
         String selectedProductItem = (String) productOrderView.getProductListComboBox().getSelectedItem();
         String selectedClientItem = (String) productOrderView.getClientListComboBox().getSelectedItem();
@@ -118,7 +128,6 @@ public class Controller {
             productDAO.update(product, product.getId());
             Orders order = new Orders(1, client.getId(), product.getId(), quantity);
             ordersDAO.insert(order);
-
             List<Orders> orders = ordersDAO.findAll();
             populate(productOrderView.getTable(), orders);
             populateTables();
@@ -126,11 +135,12 @@ public class Controller {
             bill.createBill(order,client,product);
         }
     }
-
+    /**
+     * It populates the JComboBoxes from the ordersView in order to select the client that purchases a specific product
+     * */
     public void populateComboBoxes() {
         List<Client> clients = clientDAO.findAll();
         List<Product> products = productDAO.findAll();
-
         DefaultComboBoxModel<String> comboBoxModelClient = new DefaultComboBoxModel<>();
         for (Client client : clients) {
             comboBoxModelClient.addElement(client.getName());
@@ -148,7 +158,6 @@ public class Controller {
         this.productView.editProductActionListener(
                 (event) -> {
                     readForProducts();
-                    //edit products action
                     Product product = new Product(idProduct, nameProduct, priceProduct, categoryProduct, stockProduct);
                     productDAO.update(product, idProduct);
                 }
@@ -158,7 +167,6 @@ public class Controller {
     private void showProducts() {
         this.productView.showProductsActionListener(
                 (event) -> {
-                    //show products action
                     List<Product> products = productDAO.findAll();
                     populate(productView.getTable(), products);
                 }
@@ -169,7 +177,6 @@ public class Controller {
         this.productView.deleteProductActionListener(
                 (event) -> {
                     idProduct = productView.getIdTextField();
-                    //delete products action
                     productDAO.delete(idProduct);
                 }
         );
@@ -179,7 +186,6 @@ public class Controller {
         this.productView.addProductActionListener(
                 (event) -> {
                     readForProducts();
-                    //add products action
                     Product product = new Product(idProduct, nameProduct, priceProduct, categoryProduct, stockProduct);
                     productDAO.insert(product);
                 }
@@ -190,7 +196,6 @@ public class Controller {
         this.clientView.editClientActionListener(
                 (event) -> {
                     readForClients();
-                    //edit clients action
                     Client client = new Client(idClient, nameClient, adressClient, emailClient, ageClient);
                     clientDAO.update(client, idClient);
                 }
@@ -201,7 +206,6 @@ public class Controller {
         this.clientView.deleteClientActionListener(
                 (event) -> {
                     idClient = clientView.getIdTextField();
-                    //delete client action
                     clientDAO.delete(idClient);
                 }
         );
@@ -211,7 +215,6 @@ public class Controller {
         this.clientView.addNewClientActionListener(
                 (event) -> {
                     readForClients();
-                    //add client action
                     Client client = new Client(idClient, nameClient, adressClient, emailClient, ageClient);
                     clientDAO.insert(client);
                 }
@@ -221,7 +224,6 @@ public class Controller {
     private void showClients() {
         this.clientView.showClientActionListener(
                 (event) -> {
-                    //show clients action
                     List<Client> clients = clientDAO.findAll();
                     populate(clientView.getTable(), clients);
                 }
@@ -245,30 +247,25 @@ public class Controller {
         stockProduct = productView.getStockTextField();
         productView.refresh();
     }
-
+    /**
+     * @param table ta the table that will be populated
+     * @param object the type of data that will be populated in the table ex : client, product, order
+     *  By using the reflection method, the method takes a table and populates it with all the data available in a database of the
+     *  specific object
+     */
     public void populate(JTable table, List<?> object) {
-        //TODO:
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0); // Clear existing data in the table
-
-        // Get the class of the objects in the list
         Class<?> objectClass = object.get(0).getClass();
-
-        // Get the fields of the object class
         Field[] fields = objectClass.getDeclaredFields();
-
-        // Create column names array based on the field names
         String[] columnNames = new String[fields.length];
         for (int i = 0; i < fields.length; i++) {
             columnNames[i] = fields[i].getName();
         }
         model.setColumnIdentifiers(columnNames);
 
-        // Iterate through the list of objects and add each object as a row to the table
         for (Object obj : object) {
             Object[] rowData = new Object[fields.length];
-
-            // Retrieve the values of the fields using reflection
             for (int i = 0; i < fields.length; i++) {
                 Field field = fields[i];
                 field.setAccessible(true);
@@ -280,7 +277,6 @@ public class Controller {
             }
             model.addRow(rowData);
         }
+
     }
-
-
 }

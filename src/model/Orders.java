@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Is the class that contains all information about a specific order
+ * @author Bota Alin
+ */
 public class Orders {
 
 private int id;

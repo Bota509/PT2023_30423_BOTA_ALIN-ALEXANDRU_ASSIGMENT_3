@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Is the class that contains all information about a specific product
+ * @author Bota Alin
+ */
 public class Product {
     private int id;
     private String name;

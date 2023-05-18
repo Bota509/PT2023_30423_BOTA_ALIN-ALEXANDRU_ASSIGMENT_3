@@ -5,6 +5,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The GUI for the Client View
+ */
 public class ClientView extends JFrame{
 
     private JPanel contentPane;
@@ -19,6 +22,9 @@ public class ClientView extends JFrame{
     private JButton editClientButton;
     private JButton addNewClientButton;
 
+    /**
+     * Constructor of the GUI Client View
+     */
     public ClientView() {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setBounds(100, 100, 1368, 761);
@@ -166,6 +172,10 @@ public class ClientView extends JFrame{
         this.table = table;
     }
 
+    /**
+     * @param actionListener receives a listener
+     * for the insertion button
+     */
     public void addNewClientActionListener(ActionListener actionListener)
     {
         this.addNewClientButton.addActionListener(actionListener);
@@ -183,6 +193,7 @@ public class ClientView extends JFrame{
     {
         this.showClientsButton.addActionListener(actionListener);
     }
+
     public void refresh()
     {
         this.idTextField.setText("");
