@@ -1,15 +1,27 @@
 package model;
 
 public class Orders {
+
+private int id;
 private int clientID;
 private int productID;
 private int quantity;
 
-    public Orders(int clientID, int productID, int quantity) {
+    public Orders()
+    {
+
+    }
+    public Orders(int id, int clientID, int productID, int quantity) {
+        this.id = id;
         this.clientID = clientID;
         this.productID = productID;
         this.quantity = quantity;
     }
+
+    public int getId() {
+        return id;
+    }
+
 
     public int getClientID() {
         return clientID;
@@ -34,4 +46,8 @@ private int quantity;
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

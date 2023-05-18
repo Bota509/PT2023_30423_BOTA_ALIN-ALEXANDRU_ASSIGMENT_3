@@ -192,4 +192,5 @@ public class ClientView extends JFrame{
         this.nameTextField.setText("");
     }
 
+
 }

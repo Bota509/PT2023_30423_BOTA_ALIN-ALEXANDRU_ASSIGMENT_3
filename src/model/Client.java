@@ -1,11 +1,17 @@
 package model;
 
+import dao.ClientDAO;
+
 public class Client {
     private int id;
     private String name;
     private String adress;
     private String email;
     private int age;
+    public Client()
+    {
+
+    }
 
     public Client(int id, String name, String adress, String email, int age) {
         this.id = id;

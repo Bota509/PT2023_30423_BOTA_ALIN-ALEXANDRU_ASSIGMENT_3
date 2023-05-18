@@ -123,8 +123,7 @@ public class AbstractDAO<T> {
     }
 
     public T insert(T t) {
-       /* private static final String insertStatementString = "INSERT INTO client (name,adress,email,age)"
-                + " VALUES (?,?,?,?)";*/
+
         Connection dbConnection =null;
         PreparedStatement statement = null;
         ResultSet rs = null;
