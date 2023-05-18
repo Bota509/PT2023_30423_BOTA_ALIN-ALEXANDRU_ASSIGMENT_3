@@ -4,6 +4,7 @@ import dao.ClientDAO;
 import dao.OrdersDAO;
 import dao.ProductDAO;
 import model.Client;
+import model.Orders;
 import model.Product;
 import presentation.ClientView;
 import presentation.GameStoreView;
@@ -23,18 +24,18 @@ public class Controller {
     GameStoreView gameStoreView;
 
     //clients
-    private int idClient = 0;
-    private String nameClient ="";
-    private String adressClient ="";
-    private String emailClient ="";
-    private int ageClient = 0;
+    private int idClient;
+    private String nameClient;
+    private String adressClient;
+    private String emailClient;
+    private int ageClient ;
 
     //products
     private int idProduct;
     private String nameProduct;
     private int priceProduct;
     private String categoryProduct;
-    private String descriptionProduct;
+    private int stockProduct;
 
     ClientDAO clientDAO;
     ProductDAO productDAO;
@@ -57,7 +58,11 @@ public class Controller {
                 (event) -> {this.productView.display();}
         );
         this.gameStoreView.openProductOrderViewActionListener(
-                (event) -> {this.productOrderView.display();}
+                (event) -> {this.productOrderView.display();
+                //populate the JComboBox
+                    populateComboBoxes();
+                    populateTables();
+                }
         );
         //Client View Controll when one of button pressed
         insertClient();
@@ -72,6 +77,62 @@ public class Controller {
         updateProduct();
 
         //Orders View Controll
+        this.productOrderView.makeOrderActionListener(
+                (event) ->{
+                    purchase();
+                }
+        );
+    }
+    public void populateTables()
+    {
+        List<Client> clients = clientDAO.findAll();
+        List<Product> products = productDAO.findAll();
+        populate(productOrderView.getClientTable(),clients);
+        populate(productOrderView.getProductTable(),products);
+    }
+
+    public void purchase()
+    {
+        String selectedProductItem = (String) productOrderView.getProductListComboBox().getSelectedItem();
+        String selectedClientItem = (String) productOrderView.getClientListComboBox().getSelectedItem();
+        int quantity = productOrderView.getQuantityTextField();
+        //in momentu in care fac order -> insert id client si id product in tabelul orders
+          Client client =  clientDAO.findByName(selectedClientItem);
+          Product product = productDAO.findByName(selectedProductItem);
+          if(quantity > product.getStock())
+          {
+              JOptionPane.showMessageDialog(null,"Out of stock only " + product.getStock() + " products available","Error",JOptionPane.ERROR_MESSAGE);
+          }
+          else if(product.getStock() - quantity >= 0 ) {
+              product.setStock(product.getStock() - quantity);
+              productDAO.update(product, product.getId());
+              Orders order = new Orders(1,client.getId(),product.getId(),quantity);
+              ordersDAO.insert(order);
+
+              List<Orders> orders = ordersDAO.findAll();
+              populate(productOrderView.getTable(),orders);
+              populateTables();
+              JOptionPane.showMessageDialog(null, "Order Done", "Thank you!", JOptionPane.INFORMATION_MESSAGE);
+          }
+    }
+    public void populateComboBoxes()
+    {
+        List<Client> clients = clientDAO.findAll();
+        List<Product> products = productDAO.findAll();
+
+        DefaultComboBoxModel<String> comboBoxModelClient = new DefaultComboBoxModel<>();
+        for (Client client : clients)
+        {
+            comboBoxModelClient.addElement(client.getName());
+        }
+        productOrderView.getClientListComboBox().setModel(comboBoxModelClient);
+
+        DefaultComboBoxModel<String> comboBoxModelProduct = new DefaultComboBoxModel<>();
+        for (Product product : products)
+        {
+            comboBoxModelProduct.addElement(product.getName());
+        }
+        productOrderView.getProductListComboBox().setModel(comboBoxModelProduct);
     }
 
     private void updateProduct() {
@@ -79,7 +140,7 @@ public class Controller {
                 (event) -> {
                     readForProducts();
                     //edit products action
-                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct,descriptionProduct);
+                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct, stockProduct);
                     productDAO.update(product,idProduct);
                 }
         );
@@ -110,7 +171,7 @@ public class Controller {
                 (event) -> {
                     readForProducts();
                     //add products action
-                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct,descriptionProduct);
+                    Product product = new Product(idProduct,nameProduct,priceProduct,categoryProduct, stockProduct);
                     productDAO.insert(product);
                 }
         );
@@ -173,7 +234,7 @@ public class Controller {
         nameProduct = productView.getNameTextField();
         categoryProduct = productView.getCategoryTextField();
         priceProduct = productView.getPriceTextField();
-        descriptionProduct = productView.getDescriptionTextField();
+        stockProduct = productView.getStockTextField();
         productView.refresh();
     }
 

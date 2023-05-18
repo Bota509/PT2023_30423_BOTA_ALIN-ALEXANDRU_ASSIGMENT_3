@@ -12,6 +12,14 @@ public class ProductOrderView extends JFrame {
     private JTextField quantityTextField;
     private JTable table;
     private JScrollPane scrollPane;
+
+    private JTable clientTable;
+    private JScrollPane clientScrollPane;
+
+    private JTable productTable;
+    private JScrollPane productScrollPane;
+
+
     private JComboBox clientListComboBox;
 
     private JComboBox productListComboBox;
@@ -54,12 +62,51 @@ public class ProductOrderView extends JFrame {
         productListLabel.setBounds(740, 120, 165, 52);
         contentPane.add(productListLabel);
 
+
+        //product order scroll pane
+
+        JLabel ordersLabel = new JLabel("Orders List");
+        ordersLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+        ordersLabel.setBounds(160, 240, 165, 52);
+        contentPane.add(ordersLabel);
+
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(225, 298, 743, 353);
+        scrollPane.setBounds(100, 298, 250, 250);
         contentPane.add(scrollPane);
 
         table = new JTable();
         scrollPane.setViewportView(table);
+
+
+        //client order scroll pane
+        JLabel clientLabel = new JLabel("Clients List");
+        clientLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+        clientLabel.setBounds(440, 240, 165, 52);
+        contentPane.add(clientLabel);
+
+
+        clientScrollPane = new JScrollPane();
+        clientScrollPane.setBounds(380, 298, 250, 250);
+        contentPane.add(clientScrollPane);
+
+        clientTable = new JTable();
+        clientScrollPane.setViewportView(clientTable);
+
+        //product order scroll pane
+        JLabel productLabel = new JLabel("Products List");
+        productLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+        productLabel.setBounds(710, 240, 165, 52);
+        contentPane.add(productLabel);
+
+
+        productScrollPane = new JScrollPane();
+        productScrollPane.setBounds(650, 298, 250, 250);
+        contentPane.add(productScrollPane);
+
+        productTable = new JTable();
+        productScrollPane.setViewportView(productTable);
+
+
 
         clientListComboBox = new JComboBox();
         clientListComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -140,4 +187,41 @@ public class ProductOrderView extends JFrame {
         this.makeOrderButton.addActionListener(actionListener);
     }
 
+
+
+    public void setQuantityTextField(JTextField quantityTextField) {
+        this.quantityTextField = quantityTextField;
+    }
+
+    public JTable getClientTable() {
+        return clientTable;
+    }
+
+    public void setClientTable(JTable clientTable) {
+        this.clientTable = clientTable;
+    }
+
+    public JScrollPane getClientScrollPane() {
+        return clientScrollPane;
+    }
+
+    public void setClientScrollPane(JScrollPane clientScrollPane) {
+        this.clientScrollPane = clientScrollPane;
+    }
+
+    public JTable getProductTable() {
+        return productTable;
+    }
+
+    public void setProductTable(JTable productTable) {
+        this.productTable = productTable;
+    }
+
+    public JScrollPane getProductScrollPane() {
+        return productScrollPane;
+    }
+
+    public void setProductScrollPane(JScrollPane productScrollPane) {
+        this.productScrollPane = productScrollPane;
+    }
 }

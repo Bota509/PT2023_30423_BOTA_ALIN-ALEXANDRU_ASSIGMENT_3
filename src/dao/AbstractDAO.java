@@ -63,20 +63,20 @@ public class AbstractDAO<T> {
         return null;
     }
 
-    public T findById(int id) {
+    public T findByName(String name) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        String query = createSelectQuery("id");
+        String query = createSelectQuery("name");
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
+            statement.setString(1, name);
             resultSet = statement.executeQuery();
 
             return createObjects(resultSet).get(0);
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, type.getName() + "DAO:findById " + e.getMessage());
+            LOGGER.log(Level.WARNING, type.getName() + "DAO:findByName " + e.getMessage());
         } finally {
             ConnectionFactory.close(resultSet);
             ConnectionFactory.close(statement);

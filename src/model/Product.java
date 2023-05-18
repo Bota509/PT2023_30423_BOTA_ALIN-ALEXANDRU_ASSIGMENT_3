@@ -5,18 +5,18 @@ public class Product {
     private String name;
     private int price;
     private String category;
-    private String description;
+    private int stock;
 
     public Product()
     {
 
     }
-    public Product(int id, String name, int price, String category, String description) {
+    public Product(int id, String name, int price, String category, int stock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
-        this.description = description;
+        this.stock = stock;
     }
 
     public int getId() {
@@ -51,15 +51,15 @@ public class Product {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public int getStock() {
+        return stock;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", description=" + description
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", stock=" + stock
                 + "]";
     }
 }

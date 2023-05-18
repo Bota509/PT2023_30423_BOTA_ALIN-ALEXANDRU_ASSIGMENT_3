@@ -13,7 +13,7 @@ public class ProductView extends JFrame {
     private JTextField nameTextField;
     private JTextField priceTextField;
     private JTextField categoryTextField;
-    private JTextField descriptionTextField;
+    private JTextField stockTextField;
     private JTable table;
     private JButton addNewProductButton;
     private JButton editProductButton;
@@ -78,10 +78,10 @@ public class ProductView extends JFrame {
         categoryTextField.setBounds(288, 602, 184, 43);
         contentPane.add(categoryTextField);
 
-        descriptionTextField = new JTextField();
-        descriptionTextField.setColumns(10);
-        descriptionTextField.setBounds(288, 671, 184, 43);
-        contentPane.add(descriptionTextField);
+        stockTextField = new JTextField();
+        stockTextField.setColumns(10);
+        stockTextField.setBounds(288, 671, 184, 43);
+        contentPane.add(stockTextField);
 
         JLabel idLabel = new JLabel("Id");
         idLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -103,10 +103,10 @@ public class ProductView extends JFrame {
         categoryLabel.setBounds(158, 602, 120, 43);
         contentPane.add(categoryLabel);
 
-        JLabel descriptionLabel = new JLabel("Description");
-        descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-        descriptionLabel.setBounds(158, 671, 120, 43);
-        contentPane.add(descriptionLabel);
+        JLabel stockLabel = new JLabel("Stock");
+        stockLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
+        stockLabel.setBounds(158, 671, 120, 43);
+        contentPane.add(stockLabel);
 
         productsTable = new JScrollPane();
         productsTable.setBounds(665, 81, 643, 633);
@@ -152,12 +152,12 @@ public class ProductView extends JFrame {
         this.categoryTextField.setText(categoryTextField);
     }
 
-    public String getDescriptionTextField() {
-        return descriptionTextField.getText();
+    public int getStockTextField() {
+        return Integer.parseInt(stockTextField.getText());
     }
 
-    public void setDescriptionTextField(String descriptionTextField) {
-        this.descriptionTextField.setText(descriptionTextField);
+    public void setStockTextField(String stockTextField) {
+        this.stockTextField.setText(stockTextField);
     }
 
     public JTable getTable() {
@@ -191,7 +191,7 @@ public class ProductView extends JFrame {
     {
         this.nameTextField.setText("");
         this.priceTextField.setText("");
-        this.descriptionTextField.setText("");
+        this.stockTextField.setText("");
         this.categoryTextField.setText("");
         this.idTextField.setText("");
     }
