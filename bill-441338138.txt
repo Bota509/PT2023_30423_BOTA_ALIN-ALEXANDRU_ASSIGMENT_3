@@ -1,0 +1,6 @@
+18/05/2023 07:54
+Client's name: maria
+Product bought: xbox
+Quantity bought: 2
+Price per piece: 19
+Total price: 38
