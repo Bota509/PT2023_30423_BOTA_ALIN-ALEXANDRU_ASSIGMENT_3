@@ -15,9 +15,13 @@ public class Main {
         GameStoreView gameStoreView = new GameStoreView();
         ProductOrderView productOrderView = new ProductOrderView();
         Controller controller = new Controller(clientView,productView,productOrderView,gameStoreView);*/
+    Client client = new Client(3, "a", "d", "alin@fgmail.com", 21);
+    ClientDAO daoCLient = new ClientDAO();
+        daoCLient.delete(22);
 
-        Client client = ClientDAO.findById(2);
-        System.out.println(client.toString());
+    //ClientDAO.update(4,"Alin","Plevnei","ali@gmail.com",21);
+
+
 
 
     }
