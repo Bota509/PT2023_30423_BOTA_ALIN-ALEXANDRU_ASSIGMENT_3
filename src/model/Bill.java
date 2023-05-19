@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.plaf.PanelUI;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +14,74 @@ import java.util.Random;
  * @author Bota Alin
  */
 public class Bill {
+
+    private int id;
+    private String clientName;
+    private String productName;
+    private int orderQuantity;
+    private int productPrice;
+    private int totalPrice;
+
+    public Bill()
+    {
+
+    }
+    public Bill(int id, String clientName, String productName, int orderQuantity, int productPrice, int totalPrice) {
+        this.id = id;
+        this.clientName = clientName;
+        this.productName = productName;
+        this.orderQuantity = orderQuantity;
+        this.productPrice = productPrice;
+        this.totalPrice = totalPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     /**
      * @param order is an object of type Order to retrieve the information that is necessary for the bill

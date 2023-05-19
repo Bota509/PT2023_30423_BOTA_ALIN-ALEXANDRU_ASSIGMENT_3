@@ -18,6 +18,34 @@ USE `shoper`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `bill`
+--
+
+DROP TABLE IF EXISTS `bill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bill` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `clientName` varchar(255) DEFAULT NULL,
+  `productName` varchar(255) DEFAULT NULL,
+  `orderQuantity` int DEFAULT NULL,
+  `productPrice` int DEFAULT NULL,
+  `totalPrice` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bill`
+--
+
+LOCK TABLES `bill` WRITE;
+/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+INSERT INTO `bill` VALUES (1,'alin','minecraft',1,89,89),(2,'maria','minecraft',3,89,267);
+/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `client`
 --
 
@@ -61,7 +89,7 @@ CREATE TABLE `orders` (
   KEY `productID_idx` (`productID`),
   CONSTRAINT `clientID` FOREIGN KEY (`clientID`) REFERENCES `client` (`id`),
   CONSTRAINT `productID` FOREIGN KEY (`productID`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +98,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (13,23,5,3),(14,1,6,2),(15,2,5,2),(16,1,5,1),(17,2,6,1),(18,23,9,2);
+INSERT INTO `orders` VALUES (13,23,5,3),(14,1,6,2),(15,2,5,2),(16,1,5,1),(17,2,6,1),(18,23,9,2),(19,1,9,1),(20,2,9,3);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +125,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (5,'xbox',19,'console',3),(6,'halo infinity',190,'game',3),(7,'destiny',180,'game',1),(9,'minecraft',89,'games',5);
+INSERT INTO `product` VALUES (5,'xbox',19,'console',3),(6,'halo infinity',190,'game',3),(7,'destiny',180,'game',1),(9,'minecraft',89,'games',1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-19 12:34:18
+-- Dump completed on 2023-05-19 13:25:29

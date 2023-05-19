@@ -1,0 +1,6 @@
+19/05/2023 01:23
+Client's name: maria
+Product bought: minecraft
+Quantity bought: 3
+Price per piece: 89
+Total price: 267

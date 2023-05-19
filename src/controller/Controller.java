@@ -1,5 +1,6 @@
 package controller;
 
+import dao.BillDAO;
 import dao.ClientDAO;
 import dao.OrdersDAO;
 import dao.ProductDAO;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>The controller manages teh GUI windows, receives the inputs from the GUI and connects the GUI with the operations that
@@ -46,6 +48,7 @@ public class Controller {
     ProductDAO productDAO;
     OrdersDAO ordersDAO;
     Bill bill;
+    BillDAO billDao;
     /**
      * <p>It's responsible with the button response from the GUI and initialization of variables</p>
      */
@@ -57,6 +60,7 @@ public class Controller {
         clientDAO = new ClientDAO();
         productDAO = new ProductDAO();
         ordersDAO = new OrdersDAO();
+        billDao = new BillDAO();
         bill = new Bill();
 
         //Main View Controll
@@ -133,6 +137,12 @@ public class Controller {
             populateTables();
             JOptionPane.showMessageDialog(null, "Order Done", "Thank you!", JOptionPane.INFORMATION_MESSAGE);
             bill.createBill(order,client,product);
+            Random rand = new Random();
+            int billId = rand.nextInt();
+            Bill bill1 = new Bill(billId,client.getName(),product.getName(),order.getQuantity(),product.getPrice(),product.getPrice() * order.getQuantity());
+            billDao.insert(bill1);
+            List<Bill> bills = billDao.findAll();
+            populate(productOrderView.getBillTable(), bills);
         }
     }
     /**

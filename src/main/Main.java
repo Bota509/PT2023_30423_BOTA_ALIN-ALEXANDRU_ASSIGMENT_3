@@ -1,9 +1,6 @@
 package main;
 
-import connection.ConnectionFactory;
 import controller.Controller;
-import dao.ClientDAO;
-import model.Client;
 import presentation.ClientView;
 import presentation.GameStoreView;
 import presentation.ProductOrderView;

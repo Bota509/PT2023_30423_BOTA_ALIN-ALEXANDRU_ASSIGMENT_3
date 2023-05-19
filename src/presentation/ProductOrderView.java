@@ -19,6 +19,9 @@ public class ProductOrderView extends JFrame {
     private JTable productTable;
     private JScrollPane productScrollPane;
 
+    private JTable billTable;
+    private JScrollPane billScrollPane;
+
 
     private JComboBox clientListComboBox;
 
@@ -105,6 +108,27 @@ public class ProductOrderView extends JFrame {
 
         productTable = new JTable();
         productScrollPane.setViewportView(productTable);
+
+
+
+
+
+        JLabel billLabel = new JLabel("Bill List");
+        billLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
+        billLabel.setBounds(1010, 240, 165, 52);
+        contentPane.add(billLabel);
+
+
+        billScrollPane = new JScrollPane();
+        billScrollPane.setBounds(950, 298, 250, 250);
+        contentPane.add(billScrollPane);
+
+        billTable = new JTable();
+        billScrollPane.setViewportView(billTable);
+
+
+
+
 
 
 
@@ -223,5 +247,21 @@ public class ProductOrderView extends JFrame {
 
     public void setProductScrollPane(JScrollPane productScrollPane) {
         this.productScrollPane = productScrollPane;
+    }
+
+    public JTable getBillTable() {
+        return billTable;
+    }
+
+    public void setBillTable(JTable billTable) {
+        this.billTable = billTable;
+    }
+
+    public JScrollPane getBillScrollPane() {
+        return billScrollPane;
+    }
+
+    public void setBillScrollPane(JScrollPane billScrollPane) {
+        this.billScrollPane = billScrollPane;
     }
 }
