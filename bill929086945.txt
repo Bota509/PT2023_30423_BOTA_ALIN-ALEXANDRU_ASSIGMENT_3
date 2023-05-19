@@ -1,0 +1,6 @@
+19/05/2023 12:23
+Client's name: gege
+Product bought: minecraft
+Quantity bought: 2
+Price per piece: 89
+Total price: 178

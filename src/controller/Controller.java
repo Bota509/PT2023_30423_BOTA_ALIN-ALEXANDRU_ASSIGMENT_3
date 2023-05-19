@@ -202,6 +202,8 @@ public class Controller {
         );
     }
 
+
+
     private void removeClient() {
         this.clientView.deleteClientActionListener(
                 (event) -> {
